@@ -1,0 +1,40 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+  role          Role 
+  students      Student[]
+  courses       Course[]
+}
+
+model Student {
+  id          Int      @id @default(autoincrement())
+  name        String
+  attendance  Boolean  @default(true)
+  performance String?
+  courses     Course[] @relation("StudentCourses")
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      Int?
+}
+
+model Course {
+  id       Int       @id @default(autoincrement())
+  title    String
+  students Student[] @relation("StudentCourses")
+  User     User?     @relation(fields: [userId], references: [id])
+  userId   Int?
+}
