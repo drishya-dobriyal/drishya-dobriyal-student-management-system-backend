@@ -29,7 +29,7 @@ Before setting up the backend, make sure you have the following installed:
 Clone the repository and navigate into the backend directory:
 
     ```bash
-    git clone https://github.com/yourusername/student-management-system.git
+    git clone https://github.com/drishya-dobriyal/student-management-system-backend.git
     cd student-management-system/backend
     ```
 
