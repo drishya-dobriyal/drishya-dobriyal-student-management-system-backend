@@ -12,7 +12,7 @@ async function signup(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
         const { id } = await prisma.user.create({
-            data: { username, password: hashedPassword, role }
+            data: { username, password: hashedPassword, role: role.toUpperCase() }
         });
         return res.status(201).json({ id, role: role.toUpperCase(), username });
     } catch (error) {

@@ -7,13 +7,15 @@
     "start": "node src/app.js",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
-    "test": "jest"
+    "test": "jest",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@prisma/client": "^5.17.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
