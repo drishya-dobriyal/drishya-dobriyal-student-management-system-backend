@@ -14,7 +14,8 @@ async function signup(req, res) {
         const { id } = await prisma.user.create({
             data: { username, password: hashedPassword, role: role.toUpperCase() }
         });
-        return res.status(201).json({ id, role: role.toUpperCase(), username });
+        const token = jwt.sign({ id, role: role.toUpperCase() }, process.env.SECRET_KEY);
+        return res.status(201).json({ token });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
